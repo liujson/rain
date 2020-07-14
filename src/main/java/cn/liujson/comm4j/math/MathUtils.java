@@ -27,6 +27,7 @@ public class MathUtils {
     /**
      * 求两个数的最小公倍数
      * a*b/最大公约数
+     *
      * @param a
      * @param b
      * @return
@@ -38,6 +39,7 @@ public class MathUtils {
     /**
      * 计算两点之间的距离
      * 勾股定理：a^2+b^2=c^2
+     *
      * @param x1
      * @param y1
      * @param x2
@@ -47,7 +49,7 @@ public class MathUtils {
     public static double pointsDistance(int x1, int y1, int x2, int y2) {
         int a = Math.abs(x1 - x2);
         int b = Math.abs(y1 - y2);
-        return Math.sqrt(a*a+b*b);
+        return Math.sqrt(a * a + b * b);
     }
 
     /**
@@ -71,6 +73,26 @@ public class MathUtils {
             }
         }
         return true;
+    }
+
+    /**
+     * 取下整
+     *
+     * @param num
+     * @return
+     */
+    public static int floor(double num) {
+        return (int) Math.floor(num);
+    }
+
+    /**
+     * 取上整
+     *
+     * @param num
+     * @return
+     */
+    public static int ceil(double num) {
+        return (int) Math.ceil(num);
     }
 
 }
