@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
+
 /**
  * 日期格式化工具
  * (注：此类线程安全但效率较慢)
@@ -27,6 +29,7 @@ import java.util.Date;
  * K:   和hh差不多，表示天天12小时制（0-11）
  * z:   表示时区
  * <p>
+ *
  * @author Liujs
  * @date 2019/9/16
  */
@@ -59,9 +62,22 @@ public class DateFormat {
      * @return 格式化后的日期字符串
      */
     public static String format(final Date date, final String pattern) {
+        return format(date,pattern,TimeZone.getDefault());
+    }
+
+    /**
+     * 格式化日期为指定格式模板的格式
+     *
+     * @param date    需要格式化的日期
+     * @param pattern 日期格式模板
+     * @return 格式化后的日期字符串
+     */
+    public static String format(final Date date, final String pattern, TimeZone timeZone) {
         SimpleDateFormat format = new SimpleDateFormat(pattern);
+        format.setTimeZone(timeZone);
         return format.format(date);
     }
+
 
     /**
      * 格式化日期为指定格式模板的格式
@@ -71,11 +87,25 @@ public class DateFormat {
      * @return 格式化后的日期字符串
      */
     public static String format(final long timeMillis, final String pattern) {
-        return format(new Date(timeMillis), pattern);
+        return format(new Date(timeMillis), pattern,TimeZone.getDefault());
+    }
+
+    /**
+     * 格式化日期为指定格式模板的格式
+     *
+     * @param timeMillis 日期时间的毫秒形式
+     * @param pattern    日期格式模板
+     * @return 格式化后的日期字符串
+     */
+    public static String format(final long timeMillis, final String pattern, TimeZone timeZone) {
+        Calendar instance = Calendar.getInstance(timeZone);
+        instance.setTimeInMillis(timeMillis);
+        return format(instance.getTime(), pattern, timeZone);
     }
 
     /**
      * 格式化当前时间为指定格式
+     *
      * @param pattern 目标格式
      * @return 格式化后的日期字符串
      */
