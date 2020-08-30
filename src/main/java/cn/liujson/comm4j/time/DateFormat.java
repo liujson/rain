@@ -100,6 +100,7 @@ public class DateFormat {
     public static String format(final long timeMillis, final String pattern, TimeZone timeZone) {
         Calendar instance = Calendar.getInstance(timeZone);
         instance.setTimeInMillis(timeMillis);
+
         return format(instance.getTime(), pattern, timeZone);
     }
 
